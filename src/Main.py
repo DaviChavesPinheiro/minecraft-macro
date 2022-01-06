@@ -1,11 +1,11 @@
-from Macro import Macro
+from macros.Macro import Macro
 from pynput.mouse import Controller as MouseController
 from pynput.mouse._xorg import Controller as MouseController
 from pynput.keyboard import Controller as KeyboardController
 from pynput.keyboard._xorg import Controller as KeyboardController
-from LeftMouseMacro import LeftMouseMacro
-from RightMouseMacro import RightMouseMacro
-from Switcher import Switcher
+from macros.LeftMouseMacro import LeftMouseMacro
+from macros.RightMouseMacro import RightMouseMacro
+from macros.Switcher import Switcher
 import pyautogui
 
 if __name__ == "__main__":

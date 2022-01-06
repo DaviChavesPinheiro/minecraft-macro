@@ -1,7 +1,7 @@
 from pynput import mouse, keyboard
 
 from EventManager import EventManager
-from Switcher import Switcher
+from macros.Switcher import Switcher
 
 class Macro:
     def __init__(self, switcher) -> None:
