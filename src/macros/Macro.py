@@ -1,20 +1,12 @@
 from pynput import mouse, keyboard
 
-from EventManager import EventManager
 from macros.Switcher import Switcher
 
 class Macro:
-    def __init__(self, switcher) -> None:
-        self.onMouseEvents = EventManager()
-        self.onKeyEvents = EventManager()
+    def __init__(self, switcher: Switcher) -> None:
         self.macros = []
-        self.switcher: Switcher = switcher
-
-        self.mouseListener = mouse.Listener(on_click=lambda x, y, button, pressed: self.onMouseEvents.notify(lambda obj: obj.on_click, x, y, button, pressed))
-        self.mouseListener.start()
-
-        self.keyListener = keyboard.Listener(on_press=lambda key: self.onKeyEvents.notify(lambda obj: obj.on_press, key))
-        self.keyListener.start()
+        self.switcher = switcher
+        
     def update(self):
         if self.switcher.active:
             for macro in self.macros:
@@ -22,18 +14,12 @@ class Macro:
     
     def addMouseMacro(self, object):
         self.macros.append(object)
-        self.onMouseEvents.subscribe(object)
+        mouseListener = mouse.Listener(on_click=lambda x, y, button, pressed: object.on_click(x, y, button, pressed))
+        mouseListener.start()
         
-    def removeMouseMacro(self, object):
-        self.macros.remove(object)
-        self.onMouseEvents.unsubscribe(object)
-
     def addKeyMacro(self, object):
         self.macros.append(object)
-        self.onKeyEvents.subscribe(object)
+        self.keyListener = keyboard.Listener(on_press=lambda key: object.on_press(key))
+        self.keyListener.start()
         
-    def removeKeyMacro(self, object):
-        self.macros.remove(object)
-        self.onKeyEvents.unsubscribe(object)
-
     

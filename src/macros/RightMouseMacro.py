@@ -8,8 +8,7 @@ class RightMouseMacro:
         self.mouse = mouse
         self.keyboard = keyboard
 
-    def on_click(self, args):
-        x, y, button, pressed = args
+    def on_click(self, x, y, button, pressed):
         if button == Button.button8:
             self.active = not self.active
             if pressed:

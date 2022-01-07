@@ -4,8 +4,7 @@ class Switcher:
     def __init__(self) -> None:
         self.active = False
 
-    def on_press(self, args):
-        key: KeyCode = args[0]
+    def on_press(self, key: KeyCode):
         try:
             if key.char == ']':
                 self.active = not self.active

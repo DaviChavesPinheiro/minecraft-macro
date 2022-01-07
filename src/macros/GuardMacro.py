@@ -8,8 +8,7 @@ class GuardMacro:
         self.active = False
         self.mouse = mouse
 
-    def on_press(self, args):
-        key: KeyCode = args[0]
+    def on_press(self, key: KeyCode):
         try:
             if key == Key.alt:
                 self.active = not self.active
